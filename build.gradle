@@ -1,0 +1,37 @@
+group 'kotlin_playground'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.0.5'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = 'MainKt'
+
+defaultTasks 'run'
+
+sourceCompatibility = 1.8
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/myKotlin'
+    main.java.srcDirs += 'src/main/myJava'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
