@@ -84,6 +84,13 @@ fun main(args: Array<String>) {
     val ar = arrayOf("c", "d")
     l = asList("a", "b", *ar)// 既に配列として持ってるものを渡す場合、* で展開する
     println(l)
+
+    val u = User("test")
+    println(u.name)
+    println(u.age)
+
+    val u2 = User("test", "hoge")
+    println(u.name)
 }
 
 // vararg 可変長引数
