@@ -91,6 +91,14 @@ fun main(args: Array<String>) {
 
     val u2 = User("test", "hoge")
     println(u.name)
+
+    val r = Rational(1, 2)
+    println(r)
+    val r2 = Rational(4, 2)
+    println(r2)
+    println(r.plus(r2))
+//    val r2 = Rational(1, 0)
+//    println(r)
 }
 
 // vararg 可変長引数
