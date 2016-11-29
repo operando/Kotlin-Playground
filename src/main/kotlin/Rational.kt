@@ -8,7 +8,7 @@ class Rational(val n: Int, val d: Int) {
     val nu: Int = n / g
     val de = d / g
 
-    fun plus(than: Rational): Rational {
+    operator fun plus(than: Rational): Rational {
         return Rational(nu * than.de + than.nu * de, de + than.de)
     }
 

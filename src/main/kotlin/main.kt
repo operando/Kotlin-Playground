@@ -97,6 +97,7 @@ fun main(args: Array<String>) {
     val r2 = Rational(4, 2)
     println(r2)
     println(r.plus(r2))
+    println(r + r2)
 //    val r2 = Rational(1, 0)
 //    println(r)
 }
