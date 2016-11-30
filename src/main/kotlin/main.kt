@@ -94,12 +94,40 @@ fun main(args: Array<String>) {
 
     val r = Rational(1, 2)
     println(r)
+    //    val r2 = Rational(1, 0)
+//    println(r)
     val r2 = Rational(4, 2)
     println(r2)
     println(r.plus(r2))
     println(r + r2)
-//    val r2 = Rational(1, 0)
-//    println(r)
+    println(r + 2)
+    println(2 + r)
+
+//    val ll: Int = 10L // 暗黙型変換はできない
+    val ii: Int = (10 * 10.2).toInt() // 明示的に変換する必要がある
+    println(ii)
+    println(2 * 10.5)
+
+    println("test"[0]) // extensionでStringにoperator fun getとか定義してるからできるのかなー
+
+    val aaa = "hoge"
+    println("""
+test $aaa
+test $aaa
+    """)
+    println("""
+        |test $aaa
+        |test $aaa
+    """.trimMargin())
+    println("""
+        *test $aaa
+        *test $aaa
+    """.trimMargin("*"))
+
+    println("""
+test $aaa
+test $aaa
+    """.javaClass)
 }
 
 // vararg 可変長引数
