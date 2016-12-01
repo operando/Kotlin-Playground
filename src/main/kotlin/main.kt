@@ -45,6 +45,16 @@ fun main(args: Array<String>) {
     }
     println(c)
 
+    val d = if (true) "true" else "false"
+    println(d)
+
+    val aaaa = 10
+    var e =
+            if (aaaa == 10) "10"
+            else if (aaaa > 2) "2"
+            else "0"
+    println(e)
+
     when (10) {
         hogehoge() -> println("hogehoge")
         a -> println("a")
@@ -71,6 +81,13 @@ fun main(args: Array<String>) {
         "s".isEmpty() -> println("empty")
         else -> println("else")
     }
+
+    e = when {
+        (aaaa == 10) -> "10"
+        (aaaa > 2) -> "2"
+        else -> "0"
+    }
+    println(e)
 
     println(getStringLength())
     println(getStringLength("test"))
@@ -128,6 +145,41 @@ test $aaa
 test $aaa
 test $aaa
     """.javaClass)
+
+
+    val list1 = listOf("a", "b")
+    println(list1[0])
+
+    val ml: MutableList<String> = mutableListOf("a", "b")
+    ml[0] = "c" // ml.set(0, "c")
+    println(ml[0])
+    ml += "d" // plusAssign
+    println(ml)
+    ml -= "d" // minusAssign
+    println(ml)
+
+    val map2 = mutableMapOf("a" to 1, "b" to 2) // value to value でPairの生成
+    println(map2)
+    println(map2["a"])
+    map2 += "c" to 3
+    println(map2)
+
+    println(("b" to 2 to 2 to 1)) // (((b, 2), 2), 1)
+    println(("b" to 2 to 2 to 1).javaClass) // class kotlin.Pair
+
+
+    // range
+    println(5 in 1..10)
+    val range: IntRange = 1..10
+    val cRange = 'a'..'z'
+    val lRange = 10L..100L
+    println(5 in range)
+    println(5 !in range)
+
+    println((1..5).toList())
+    println((5 downTo 1).toList()) // [5, 4, 3, 2, 1]
+    println((1..5 step 2).toList())
+    println((100 downTo 0 step 25).toList()) // [100, 75, 50, 25, 0]
 }
 
 // vararg 可変長引数
