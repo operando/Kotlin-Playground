@@ -1,7 +1,12 @@
 // openを付けないと継承できない
-open class User(val name: String) {
+open class User(open val name: String) {
 
     var age = 0
+
+    var gender: Int = 0
+        set(value) {
+            field = value
+        }
 
     val isAdmin: Boolean
         get() = false

@@ -180,6 +180,21 @@ test $aaa
     println((5 downTo 1).toList()) // [5, 4, 3, 2, 1]
     println((1..5 step 2).toList())
     println((100 downTo 0 step 25).toList()) // [100, 75, 50, 25, 0]
+
+    testFun()
+    testFun("test")
+    testFun("test", intV = 9)
+    testFun(value = false)
+
+    TestAction().jump()
+    TestAction().run()
+    TestAction().run() {
+        println("run run")
+    }
+
+    println(test.Event().value)
+    // test.Event().value = 2
+
 }
 
 // vararg 可変長引数
@@ -195,6 +210,17 @@ fun hogehoge(): Int {
 fun getNullable(): String? {
     return null
 }
+
+fun testFun(test: String = "", value: Boolean = true, intV: Int = 1) {
+    println(test)
+    println(value)
+    println(intV)
+}
+
+// Default valueがあれば、型指定しなくてもいいかなーと思ったけどダメだった
+//fun test(test: String = "") {
+//
+//}
 
 fun getStringLength(str: String = ""): Int {
     return str.length
