@@ -167,6 +167,9 @@ test $aaa
     println(("b" to 2 to 2 to 1)) // (((b, 2), 2), 1)
     println(("b" to 2 to 2 to 1).javaClass) // class kotlin.Pair
 
+    // infix fun <A, B, C> Pair<A, B>.to(that: C): Triple<A, B, C> = Triple(this.first, this.second, that)
+    println(("b" to 2 to 2))
+    println(("b" to 2 to 2).javaClass)
 
     // range
     println(5 in 1..10)
@@ -196,6 +199,8 @@ test $aaa
     // test.Event().value = 2
 
 }
+
+infix fun <A, B, C> Pair<A, B>.to(that: C): Triple<A, B, C> = Triple(this.first, this.second, that)
 
 // vararg 可変長引数
 fun <T> asList(vararg t: T): List<T> {
