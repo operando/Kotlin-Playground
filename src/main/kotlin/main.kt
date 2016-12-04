@@ -164,12 +164,21 @@ test $aaa
     map2 += "c" to 3
     println(map2)
 
+    // TripleからQuartetを作る拡張関数がなければの出力例
     println(("b" to 2 to 2 to 1)) // (((b, 2), 2), 1)
     println(("b" to 2 to 2 to 1).javaClass) // class kotlin.Pair
 
     // infix fun <A, B, C> Pair<A, B>.to(that: C): Triple<A, B, C> = Triple(this.first, this.second, that)
     println(("b" to 2 to 2))
     println(("b" to 2 to 2).javaClass)
+
+    // infix fun <A, B, C, D> Triple<A, B, C>.to(that: D): Quartet<A, B, C, D> = Quartet(this.first, this.second, this.third, that)
+    println(("b" to 2 to 2 to 10L))
+    println(("b" to 2 to 2 to 10L).javaClass)
+
+    // infix fun <A, B, C, D, E> Quartet<A, B, C, D>.to(that: E): Quintet<A, B, C, D, E> = Quintet(this.first, this.second, this.third, this.fourth, that)
+    println(("b" to 2 to 2 to 10L to "D"))
+    println(("b" to 2 to 2 to 10L to "D").javaClass)
 
     // range
     println(5 in 1..10)
@@ -201,6 +210,8 @@ test $aaa
 }
 
 infix fun <A, B, C> Pair<A, B>.to(that: C): Triple<A, B, C> = Triple(this.first, this.second, that)
+
+infix fun <A, B, C, D> Triple<A, B, C>.to(that: D): Quartet<A, B, C, D> = Quartet(this.first, this.second, this.third, that)
 
 // vararg 可変長引数
 fun <T> asList(vararg t: T): List<T> {
