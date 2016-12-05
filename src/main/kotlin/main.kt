@@ -207,6 +207,35 @@ test $aaa
     println(test.Event().value)
     // test.Event().value = 2
 
+    println(Nest.Test().test())
+    println(Nest.Test().test2())
+    println(Nest().Test2().test())
+
+    println(Status.CLOSE)
+
+    println(Color.RED.rgb)
+    println(Color.RED.name)
+    println(Color.RED.ordinal)
+
+    val new = TaskStatus.New(0)
+    val run = TaskStatus.Running(0, "test")
+    val close = TaskStatus.Close(0, true)
+    val none = TaskStatus.None
+
+    println(states(new))
+    println(states(run))
+    println(states(close))
+    println(states(none))
+
+    println()
+}
+
+fun states(taskStatus: TaskStatus): String = when (taskStatus) {
+    is TaskStatus.New -> "new"
+    is TaskStatus.Running -> "run"
+    is TaskStatus.Close -> "close"
+    TaskStatus.None -> "none"
+    else -> ""
 }
 
 infix fun <A, B, C> Pair<A, B>.to(that: C): Triple<A, B, C> = Triple(this.first, this.second, that)
