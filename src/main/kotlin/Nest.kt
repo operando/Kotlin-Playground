@@ -6,7 +6,12 @@ class Nest {
         fun test() = "test"
 
         fun test2(): String {
-            // 関数もネストしてローカル関数として定義できる
+            // メソッドの中でクラス定義もできる
+            class Test3(val s: String) {
+            }
+            Test3("test").s
+
+            // メソッドもネストしてローカル関数として定義できる
             fun test3(s: String): String {
                 return s + " test3"
             }
