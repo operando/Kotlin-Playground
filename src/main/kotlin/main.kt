@@ -228,6 +228,39 @@ test $aaa
     println(states(none))
 
     println()
+
+    val (a1, b1, c1, d1) = ("a" to "b" to "c" to "d")
+    println(a1)
+    println(b1)
+    println(c1)
+    println(d1)
+
+    for ((a2, b2, c2, d2) in listOf(("a" to "b" to "c" to "d"), ("aa" to "bb" to "cc" to "dd"))) {
+        println(a2)
+        println(b2)
+        println(c2)
+        println(d2)
+    }
+
+    for ((key, value) in mapOf("key1" to "value1", "key2" to "value2")) {
+        println(key)
+        println(value)
+    }
+
+    val (ss, i) = hoge()
+    println(ss)
+    println(i)
+
+    DataProviderManager.test()
+
+    TestActivity.createIntent()
+    println(TestActivity.a)
+    println(TestActivity.RESULT_OK)
+    println(RESULT_OK)
+}
+
+fun hoge(): Pair<String, Int> {
+    return ("a" to 1)
 }
 
 fun states(taskStatus: TaskStatus): String = when (taskStatus) {
@@ -235,7 +268,6 @@ fun states(taskStatus: TaskStatus): String = when (taskStatus) {
     is TaskStatus.Running -> "run"
     is TaskStatus.Close -> "close"
     TaskStatus.None -> "none"
-    else -> ""
 }
 
 infix fun <A, B, C> Pair<A, B>.to(that: C): Triple<A, B, C> = Triple(this.first, this.second, that)
