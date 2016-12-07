@@ -257,6 +257,40 @@ test $aaa
     println(TestActivity.a)
     println(TestActivity.RESULT_OK)
     println(RESULT_OK)
+    TestActivity.test()
+
+    println(listOf(1, 2, 3).last)
+    println(listOf(1, 2, 3).first)
+
+    val i1 = 1
+    val i2 = 5
+    println(i1 max i2)
+
+    fun fun1() = fun() {
+        println("huhu")
+    }
+    huhu(fun1())
+    huhu(fun() {
+        println("huhu")
+    })
+    huhu {
+        println("huhu")
+    }
+
+    println(huhu2(fun(): String {
+        return "hogehoge"
+    }))
+    println(huhu2 {
+        "test"
+    })
+}
+
+fun huhu(huhu: () -> Unit) {
+    huhu()
+}
+
+fun huhu2(huhu: () -> String): String {
+    return huhu()
 }
 
 fun hoge(): Pair<String, Int> {
@@ -273,6 +307,18 @@ fun states(taskStatus: TaskStatus): String = when (taskStatus) {
 infix fun <A, B, C> Pair<A, B>.to(that: C): Triple<A, B, C> = Triple(this.first, this.second, that)
 
 infix fun <A, B, C, D> Triple<A, B, C>.to(that: D): Quartet<A, B, C, D> = Quartet(this.first, this.second, this.third, that)
+
+val <T> List<T>.last: T
+    get() = this[size - 1]
+
+val <T> List<T>.first: T
+    get() = this[0]
+
+fun TestActivity.Companion.test() {
+    println("TestActivity.Companion.test")
+}
+
+infix fun Int.max(that: Int) = Math.max(this, that)
 
 // vararg 可変長引数
 fun <T> asList(vararg t: T): List<T> {
