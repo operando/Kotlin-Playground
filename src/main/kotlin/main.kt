@@ -283,6 +283,65 @@ test $aaa
     println(huhu2 {
         "test"
     })
+
+    println(huhu3(1, fun(a: Int): String {
+        return a.toString()
+    }))
+
+    println(huhu3(1) {
+        koko ->
+        koko.toString()
+    })
+
+    hello {
+        world()
+        world()
+    }
+
+    val bbbb = BaseImpl(10)
+    val dd = Derived(bbbb)
+    dd.println() // 10
+    println(dd.hoho("test"))
+    dd.mmmmmm()
+}
+
+interface Base {
+    fun println()
+    fun hoho(a: String): String
+}
+
+class BaseImpl(val x: Int) : Base {
+    override fun hoho(a: String): String {
+        return a.toUpperCase()
+    }
+
+    override fun println() {
+        println(x)
+    }
+}
+
+// by を使ってBaseインターフェースの全てのpublicメソッドをbに委譲するよう指定
+// DerivedはBaseを継承はしていないけど、委譲してるので呼び出しは継承と同じ感じで呼び出せる
+// 所持しているオブジェクトに単に委譲するだけのメソッドを作る必要がなくなる
+class Derived(b: Base) : Base by b {
+    val a = "aaaaa"
+
+    fun mmmmmm() {
+        println(hoho(a))
+    }
+}
+
+
+class Hello {
+    fun world() {
+        println("Hello,world")
+    }
+}
+
+fun hello(init: Hello.() -> Unit): Hello {
+    val h = Hello()
+    h.init()
+    return h
 }
 
 fun huhu(huhu: () -> Unit) {
@@ -291,6 +350,10 @@ fun huhu(huhu: () -> Unit) {
 
 fun huhu2(huhu: () -> String): String {
     return huhu()
+}
+
+fun huhu3(i: Int, huhu: (Int) -> String): String {
+    return huhu(i)
 }
 
 fun hoge(): Pair<String, Int> {
