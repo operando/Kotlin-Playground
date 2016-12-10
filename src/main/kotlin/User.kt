@@ -1,4 +1,5 @@
 // openを付けないと継承できない
+
 open class User(open val name: String) {
 
     var age = 0
@@ -10,6 +11,8 @@ open class User(open val name: String) {
 
     val isAdmin: Boolean
         get() = false
+
+    val language by Language()
 
     init {
         println("init $name")

@@ -1,3 +1,5 @@
+import java.time.LocalDateTime
+
 fun main(args: Array<String>) {
     println("kotlin")
 
@@ -303,6 +305,14 @@ test $aaa
     dd.println() // 10
     println(dd.hoho("test"))
     dd.mmmmmm()
+
+    val u3 = User("test")
+    println(u3.name)
+    println(u3.age)
+    println(u3.language.code)
+
+    println(DroidKaigi(LocalDateTime.now()).status)
+    DroidKaigi(LocalDateTime.now()).status = ""
 }
 
 interface Base {
