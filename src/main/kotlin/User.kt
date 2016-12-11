@@ -1,5 +1,4 @@
 // openを付けないと継承できない
-
 open class User(open val name: String) {
 
     var age = 0

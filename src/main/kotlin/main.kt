@@ -313,6 +313,42 @@ test $aaa
 
     println(DroidKaigi(LocalDateTime.now()).status)
     DroidKaigi(LocalDateTime.now()).status = ""
+
+    val iii = 0
+//    val sss = iii as String
+//    val sss = iii as String?
+//    val sss = null as String?
+    val sss: String? = iii as? String
+    println(sss)
+
+    momomomo(Mooo())
+    println(hunhunhun(Hunga()))
+
+    val ints: Array<Int> = arrayOf(1, 2, 3)
+    val nums: Array<*> = ints
+    val jjjjj: Any? = nums.get(0)
+    println(jjjjj)
+}
+
+fun momomomo(momo: Momo<String>) {
+    val mooooooo: CharSequence = momo.momo()
+    println(mooooooo)
+}
+
+fun hunhunhun(hunhunhun: HunHun<Int>): String {
+    return hunhunhun.hunhun(10)
+}
+
+class Mooo : Momo<String>() {
+    override fun momo(): String {
+        return "mooo"
+    }
+}
+
+class Hunga : HunHun<Int>() {
+    override fun hunhun(hunhun: Int): String {
+        return hunhun.toString()
+    }
 }
 
 interface Base {
