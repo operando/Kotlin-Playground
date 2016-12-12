@@ -1,4 +1,5 @@
 import java.time.LocalDateTime
+import java.util.*
 
 fun main(args: Array<String>) {
     println("kotlin")
@@ -328,6 +329,41 @@ test $aaa
     val nums: Array<*> = ints
     val jjjjj: Any? = nums.get(0)
     println(jjjjj)
+
+    val calendar = Calendar.getInstance()
+    val cccc = calendar.clear()
+    println(cccc.toString())
+    if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // getFirstDayOfWeek()を呼ぶ
+        calendar.firstDayOfWeek = Calendar.MONDAY        // setFirstDayOfWeek()を呼ぶ
+    }
+
+    JavaJava().`is`()
+
+    var hunhunhunhun: String = "abc"
+//    hunhunhunhun = null // compilation error
+    println(hunhunhunhun.length)
+
+    var hunhunhunhun2: String? = "abc"
+    hunhunhunhun2 = null // OK
+//    println(hunhunhunhun2.length) // compilation error
+    println(if (hunhunhunhun2 != null) hunhunhunhun2.length else -1)
+//    println(hunhunhunhun2!!.length)
+
+//    println(hunhunhunhun2?.length ?: throw Exception("hunhunhunhun2 is null."))
+    val len: Int? = hunhunhunhun2?.length
+    println(len)
+
+    val len2: Int? = hunhunhunhun2?.length?.toInt()
+    println(len2)
+
+    val listWithNulls: List<String?> = listOf("A", null)
+    for (item in listWithNulls) {
+        item?.let { println(it) } // prints A and ignores null
+    }
+
+    val nullableList: List<Int?> = listOf(1, 2, null, 4)
+    val intList: List<Int> = nullableList.filterNotNull()
+    println(intList)
 }
 
 fun momomomo(momo: Momo<String>) {
