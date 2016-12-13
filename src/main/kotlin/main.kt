@@ -364,6 +364,8 @@ test $aaa
     val nullableList: List<Int?> = listOf(1, 2, null, 4)
     val intList: List<Int> = nullableList.filterNotNull()
     println(intList)
+
+    run()
 }
 
 fun momomomo(momo: Momo<String>) {
