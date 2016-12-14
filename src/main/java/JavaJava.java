@@ -1,5 +1,7 @@
+import org.jetbrains.annotations.Mutable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.ReadOnly;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +20,16 @@ public class JavaJava {
 
     public List<String> getUnmodifiableList() {
         return Collections.unmodifiableList(new ArrayList<>());
+    }
+
+    @ReadOnly
+    public List<String> getImmutableList() {
+        return Collections.unmodifiableList(new ArrayList<>());
+    }
+
+    @Mutable
+    public List<String> getMutableList() {
+        return new ArrayList<>();
     }
 
     public void arguments(int... ints) {

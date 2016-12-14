@@ -11,6 +11,12 @@ fun run() {
     // @NotNullをつけることでPlatform TypesじゃなくてKotlin typesになる
     println(java.notNullableObject.toUpperCase())
 
+    java.immutableList // List<String!>
+
+    val l = java.mutableList // MutableList<String!>
+    l.add("test")
+    println(l)
+
     // String?とかになってほしい...
     java.stringOptional.ifPresent { println(it) }
 
@@ -22,3 +28,6 @@ fun run() {
 
     java.arguments(*array)
 }
+
+// Using JNI with Kotlin
+external fun foo(x: Int): Double
