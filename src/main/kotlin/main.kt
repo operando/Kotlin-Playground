@@ -366,6 +366,8 @@ test $aaa
     println(intList)
 
     run()
+
+    Main.main(null)
 }
 
 fun momomomo(momo: Momo<String>) {

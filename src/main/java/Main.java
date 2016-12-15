@@ -6,6 +6,8 @@ public class Main {
         dd.println();
         System.out.println(dd.hoho("test"));
         dd.mmmmmm();
+
+        CallingKotlinFromJavaSample.run();
     }
 
     interface Base {
