@@ -368,6 +368,12 @@ test $aaa
     run()
 
     Main.main(null)
+
+    for (item in MyIterable()) {
+        println(item)
+    }
+
+    println(sum((1L..10000).toList()))
 }
 
 fun momomomo(momo: Momo<String>) {
