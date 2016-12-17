@@ -374,6 +374,13 @@ test $aaa
     }
 
     println(sum((1L..10000).toList()))
+
+    val result = (1..20).toList()
+            .filter { it % 2 == 0 }
+            .map { Int::toString }
+            .take(5)
+    println(result)
+
 }
 
 fun momomomo(momo: Momo<String>) {
