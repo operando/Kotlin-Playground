@@ -381,6 +381,12 @@ test $aaa
             .take(5)
     println(result)
 
+    val strstr = with(StringBuilder()) {
+        append("test")
+        append("hunhun")
+        toString()
+    }
+    println(strstr)
 }
 
 fun momomomo(momo: Momo<String>) {
