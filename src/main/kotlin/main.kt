@@ -387,6 +387,97 @@ test $aaa
         toString()
     }
     println(strstr)
+
+    println(::mumu)
+    // 関数オブジェクト
+    val mumu = ::mumu
+    // 関数オブジェクトの型
+    // (引数の型) -> 戻り値の型
+    val mumu2: (Int) -> Int = ::mumu
+    println(mumu(2))
+
+    println(firstK("aaaKaaa"))
+    println(firstUpperCase("aaaAaaa"))
+
+    println(firstK2("aaaKaaa"))
+    println(firstUpperCase2("aaaAaaa"))
+
+    // lambda式
+    // 関数オブジェクトを直接生成する
+    val jijijiji: (Int) -> Int = { i: Int ->
+        i * i
+    }
+    println(jijijiji(2))
+
+    val jijijiji2 = { i: Int ->
+        i * i
+    }
+    println(jijijiji2(2))
+
+    // 引数が1つの場合、itを使える
+    val jijijiji3: (Int) -> Int = {
+        it * it
+    }
+    println(jijijiji3(2))
+}
+
+fun firstK(str: String): Int {
+    tailrec fun go(str: String, index: Int): Int =
+            when {
+                str.isEmpty() -> -1
+                str.first() == 'K' -> index
+                else -> go(str.drop(1), index + 1)
+            }
+    return go(str, 0)
+}
+
+fun firstUpperCase(str: String): Int {
+    tailrec fun go(str: String, index: Int): Int =
+            when {
+                str.isEmpty() -> -1
+                str.first().isUpperCase() -> index
+                else -> go(str.drop(1), index + 1)
+            }
+    return go(str, 0)
+}
+
+// firstKとfirstUpperCaseの条件部分を関数オブジェクト化
+fun first(str: String, predicate: (Char) -> Boolean): Int {
+    tailrec fun go(str: String, index: Int): Int =
+            when {
+                str.isEmpty() -> -1
+                predicate(str.first()) -> index
+                else -> go(str.drop(1), index + 1)
+            }
+    return go(str, 0)
+}
+
+fun firstK2(str: String): Int {
+    fun isK(c: Char): Boolean = c == 'K'
+    return first(str, ::isK)
+    // 以下のように直で書いてもよい
+//    return first(str, fun(c: Char): Boolean = c == 'K')
+    // lambda式
+//    return first(str, { it == 'K' })
+}
+
+fun firstUpperCase2(str: String): Int {
+    fun isUpperCase(c: Char): Boolean = c.isUpperCase()
+    return first(str, ::isUpperCase)
+    // 以下のように直で書いてもよい
+//    return first(str, fun(c: Char): Boolean = c.isUpperCase())
+    // 以下のように型を省略しても書ける
+//    return first(str, fun(c) = c.isUpperCase())
+    // 以下のようにも書ける
+//    return first(str, Char::isUpperCase)
+}
+
+fun firstWhitespace(str: String): Int = first(str, { it.isWhitespace() })
+// 最後の引数がlambdaを取るような関数なら、以下にようにも書ける
+fun firstWhitespace2(str: String): Int = first(str) { it.isWhitespace() }
+
+fun mumu(i: Int): Int {
+    return i * 2
 }
 
 fun momomomo(momo: Momo<String>) {
