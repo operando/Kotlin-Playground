@@ -1,3 +1,5 @@
+import java.util.stream.Stream;
+
 public class Main {
 
     public static void main(String[] s) {
@@ -8,6 +10,13 @@ public class Main {
         dd.mmmmmm();
 
         CallingKotlinFromJavaSample.run();
+
+        int sum = 0;
+        Stream.of(1, 2, 3)
+                .forEach(integer -> {
+                    // Lambdaから外の変数へはアクセスできない
+//                    sum += integer;
+                });
     }
 
     interface Base {

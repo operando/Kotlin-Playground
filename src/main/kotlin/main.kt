@@ -419,6 +419,98 @@ test $aaa
         it * it
     }
     println(jijijiji3(2))
+
+    val counter = getCounter()
+    println(counter())
+    println(counter())
+    println(counter())
+    println(counter())
+
+    var sum = 0
+    ints.filter { it > 0 }.forEach {
+        sum += it
+    }
+    println(sum)
+
+    log { "debug log" }
+    log(false) { "debug log" }
+
+//    crash { throw Exception() }
+
+    containsDigit("aaaaa")
+    containsDigit("aaa1aa")
+
+    containsDigit2("aaaaa")
+    containsDigit2("aa1aaa")
+}
+
+// インライン関数
+// 引数の関数オブジェクトがコンパイル時にインライン展開される
+inline fun log(debug: Boolean = true, message: () -> String) {
+    if (debug) {
+        println(message())
+    }
+}
+
+inline fun stringForEach(str: String, f: (Char) -> Unit) {
+    for (c in str) f(c)
+}
+
+fun containsDigit(str: String): Boolean {
+    stringForEach(str) {
+        if (it.isDigit()) {
+            println("containsDigit true")
+            return true
+        }
+    }
+    println("containsDigit false")
+    return false
+}
+
+fun containsDigit2(str: String): Boolean {
+    var result = false
+    stringForEach(str) {
+        if (it.isDigit()) {
+            result = true
+            return@stringForEach
+        }
+    }
+    println("containsDigit $result")
+    return result
+}
+
+fun containsDigit3(str: String): Boolean {
+    var result = false
+    stringForEach(str) here@ {
+        if (it.isDigit()) {
+            result = true
+            return@here
+        }
+    }
+    println("containsDigit $result")
+    return result
+}
+
+inline fun crash(noinline crash: () -> Unit) {
+    crash()
+}
+
+inline fun getCounter(crossinline next: () -> Int): () -> Int {
+    var count = 0
+
+    return {
+        // crossinlineにしろよ！ってエラーが出る
+        count = next()
+        count
+    }
+}
+
+fun getCounter(): () -> Int {
+    var count = 0
+
+    return {
+        count++
+    }
 }
 
 fun firstK(str: String): Int {
@@ -471,10 +563,6 @@ fun firstUpperCase2(str: String): Int {
     // 以下のようにも書ける
 //    return first(str, Char::isUpperCase)
 }
-
-fun firstWhitespace(str: String): Int = first(str, { it.isWhitespace() })
-// 最後の引数がlambdaを取るような関数なら、以下にようにも書ける
-fun firstWhitespace2(str: String): Int = first(str) { it.isWhitespace() }
 
 fun mumu(i: Int): Int {
     return i * 2
