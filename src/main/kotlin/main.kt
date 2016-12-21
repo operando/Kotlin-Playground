@@ -427,7 +427,7 @@ test $aaa
     println(counter())
 
     var sum = 0
-    ints.filter { it > 0 }.forEach {
+    (1..10).forEach {
         sum += it
     }
     println(sum)
@@ -442,11 +442,129 @@ test $aaa
 
     containsDigit2("aaaaa")
     containsDigit2("aa1aaa")
+
+    val bucket1 = createBucket(7)
+    val bucket2 = createBucket(4)
+
+    bucket1.fill()
+    bucket1.pourTo(bucket2)
+    println(bucket1.getQuantity())
+    println(bucket2.getQuantity())
+
+    val bucketKai1 = createBucketKai(7)
+    val bucketKai2 = createBucketKai(4)
+
+    bucketKai1.fill()
+    bucketKai1.pourTo(bucketKai2)
+    println(bucketKai1.quantity)
+    println(bucketKai2.quantity)
+
+    val bucketImpl1 = BucketImpl(7)
+    val bucketImpl2 = BucketImpl(4)
+
+    bucketImpl1.fill()
+    bucketImpl1.pourTo(bucketImpl2)
+    println(bucketImpl1.quantity)
+    println(bucketImpl2.quantity)
 }
+
+
+interface Bucket {
+    fun fill()
+    fun drainAway()
+    fun pourTo(that: Bucket)
+
+    fun getCapacity(): Int
+    fun getQuantity(): Int
+    fun setQuantity(quantity: Int)
+}
+
+interface BucketKai {
+    fun fill()
+    fun drainAway()
+    fun pourTo(that: BucketKai)
+
+    // interfaceはプロパティを持てる
+    // プロパティはオブジェクトの内部にあるものではなく、境界にあるもの
+    // 変数のように見えるが、実際のデータの持ち方は規定しない
+    // 実装するオブジェクトの実装次第になる
+    val capacity: Int
+    var quantity: Int
+}
+
+fun createBucket(capacity: Int): Bucket = object : Bucket {
+
+    //
+//        val capacity: Int = 5
+    var _quantity = 0
+
+    override fun fill() {
+        setQuantity(getCapacity())
+    }
+
+    override fun drainAway() {
+        setQuantity(0)
+    }
+
+    override fun pourTo(that: Bucket) {
+        val thatVacuity = that.getCapacity() - that.getQuantity()
+        if (getQuantity() <= thatVacuity) {
+            that.setQuantity(that.getQuantity() + getQuantity())
+            drainAway()
+        } else {
+            that.fill()
+            setQuantity(getQuantity() - thatVacuity)
+        }
+    }
+
+    override fun getCapacity(): Int {
+        return capacity
+    }
+
+    override fun getQuantity(): Int {
+        return _quantity
+    }
+
+    override fun setQuantity(quantity: Int) {
+        _quantity = quantity
+    }
+}
+
+fun createBucketKai(_capacity: Int): BucketKai = object : BucketKai {
+
+    // プロパティにもoverrideがつく
+    override val capacity = _capacity
+
+    // プロパティは必ず初期化しないといけない
+    override var quantity = 0
+
+    override fun fill() {
+        quantity = capacity
+    }
+
+    override fun drainAway() {
+        quantity = 0
+    }
+
+    override fun pourTo(that: BucketKai) {
+        val thatVacuity = that.capacity - that.quantity
+        if (quantity <= thatVacuity) {
+            that.quantity = quantity
+            drainAway()
+        } else {
+            that.fill()
+            quantity -= thatVacuity
+        }
+    }
+}
+
 
 // インライン関数
 // 引数の関数オブジェクトがコンパイル時にインライン展開される
 inline fun log(debug: Boolean = true, message: () -> String) {
+    // 単にStringの引数を受け取るのではなく、()-> Stringを受け取る理由は、関数の実行タイミングを遅らせるため
+    // 引数 debugがfalseの時、メッセージを出力する必要がない = メッセージを生成する必要がない = 関数が実行されなければメッセージは生成しない
+    // メッセージの生成が高コストな時とかに有効
     if (debug) {
         println(message())
     }

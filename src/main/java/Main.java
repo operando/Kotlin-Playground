@@ -1,3 +1,4 @@
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class Main {
@@ -14,9 +15,16 @@ public class Main {
         int sum = 0;
         Stream.of(1, 2, 3)
                 .forEach(integer -> {
-                    // Lambdaから外の変数へはアクセスできない
+                    // Lambdaから外の変数の変更はできない
 //                    sum += integer;
                 });
+    }
+
+    public Supplier<Integer> getCounter() {
+        int count = 0;
+        return () -> {
+            return count;
+        };
     }
 
     interface Base {
