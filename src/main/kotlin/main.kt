@@ -466,6 +466,11 @@ test $aaa
     bucketImpl1.pourTo(bucketImpl2)
     println(bucketImpl1.quantity)
     println(bucketImpl2.quantity)
+
+    val p = Person()
+//    println(p.humuhumu) // kotlin.UninitializedPropertyAccessException: lateinit property humuhumu has not been initialized
+    p.humuhumu = "humuhumu"
+    println(p.humuhumu)
 }
 
 
