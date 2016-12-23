@@ -467,12 +467,36 @@ test $aaa
     println(bucketImpl1.quantity)
     println(bucketImpl2.quantity)
 
-    val p = Person()
+    val p = Person("kotlin")
 //    println(p.humuhumu) // kotlin.UninitializedPropertyAccessException: lateinit property humuhumu has not been initialized
     p.humuhumu = "humuhumu"
     println(p.humuhumu)
+
+    val rk = RationalKai(5)
+    println(rk.n / rk.d)
+
+    println("Kotlin Kotlin Kotlin!!".countWords())
+    println("Kotlin Kotlin Kotlin!!".countWords)
+
+    val stu = Student("kotlin", 1L)
+    stu.introduce()
+
+    val p2: Person = Student("kotlin", 1L)
+    p2.introduce()
+
+    val en = EnglishGreeter("kotlin", 10)
+    val ja = JapaneseGreeter("kotlin", 21)
+
+    en.sayHello()
+    ja.sayHello()
 }
 
+fun String.countWords(): Int = split("""\s+""".toRegex()).size
+
+// 拡張プロパティ
+// バッキングフィールドは持てない
+val String.countWords: Int
+    get() = split("""\s+""".toRegex()).size
 
 interface Bucket {
     fun fill()

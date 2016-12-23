@@ -1,4 +1,4 @@
-class Person {
+open class Person(val name2: String) {
 
     var name: String = ""
         set(value) {
@@ -16,4 +16,8 @@ class Person {
     // DIとかに使える
     // 初期化する前にアクセスするとUninitializedPropertyAccessExceptionが起きる
     lateinit var humuhumu: String
+
+    open fun introduce() {
+        println("I am $name2.")
+    }
 }
