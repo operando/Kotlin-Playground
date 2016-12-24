@@ -6,7 +6,7 @@ open class Person(val name2: String) {
             // field = バッキングフィールドを表す暗黙の変数
             field = value
         }
-    var age: Int = 0
+    open var age: Int = 0
     val nameLength: Int
         get() = name.length
 

@@ -1,5 +1,6 @@
 import java.time.LocalDateTime
 import java.util.*
+import test.HumHum as Hum
 
 fun main(args: Array<String>) {
     println("kotlin")
@@ -480,6 +481,8 @@ test $aaa
 
     val stu = Student("kotlin", 1L)
     stu.introduce()
+    stu.age = 10
+    println(stu.age)
 
     val p2: Person = Student("kotlin", 1L)
     p2.introduce()
@@ -489,6 +492,24 @@ test $aaa
 
     en.sayHello()
     ja.sayHello()
+
+    // import test.HumHum as Hum
+    val hum = Hum()
+}
+
+interface Homu {
+    val homu1: Int
+    var homu: Int
+    fun homu()
+}
+
+interface Humu : Homu {
+    // interface内のプロパティは値を持てない(バッキングフィールドを持てない)
+    // 他のinterfaceが持つプロパティをoverrideしても、返せるのは固定値 or 他のプロパティ
+    override val homu1: Int
+        get() = 0
+
+    fun humu()
 }
 
 fun String.countWords(): Int = split("""\s+""".toRegex()).size
