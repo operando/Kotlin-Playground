@@ -1,3 +1,6 @@
+import test.Container
+import test.GreeterWithRecording
+import test.JapaneseGreeterKai
 import java.time.LocalDateTime
 import java.util.*
 import test.HumHum as Hum
@@ -495,6 +498,16 @@ test $aaa
 
     // import test.HumHum as Hum
     val hum = Hum()
+
+    val gr = GreeterWithRecording(JapaneseGreeterKai())
+    gr.sayHello("test")
+    gr.sayHello()
+    gr.sayHello("kotlin")
+    println(gr.targets)
+
+    // 型推論できる場合は、ダイヤモンド演算子不要
+    Container("test")
+    Container(10)
 }
 
 interface Homu {
