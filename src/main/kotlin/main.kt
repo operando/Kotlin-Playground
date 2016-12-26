@@ -1,6 +1,4 @@
-import test.Container
-import test.GreeterWithRecording
-import test.JapaneseGreeterKai
+import test.*
 import java.time.LocalDateTime
 import java.util.*
 import test.HumHum as Hum
@@ -508,6 +506,36 @@ test $aaa
     // 型推論できる場合は、ダイヤモンド演算子不要
     Container("test")
     Container(10)
+
+    show(Container5("test"))
+    show(Container5(10))
+
+    val c5: Container5<Number> = Container5(10)
+    val c52: Container5<*> = Container5(10)
+    c52.value.toString() // Any?型になる
+    Container5(10).copyTo(c5)
+    show(c5)
+
+    val c6: Container6<Number> = Container6(10)
+    show6(c6)
+
+    println("".instanceOf<String>())
+    println("".instanceOf<Int>())
+}
+
+// inline + reified
+inline fun <reified T> Any.instanceOf(): Boolean = this is T
+
+fun show(container5: Container5<out Any>) {
+    println(container5.toString())
+    println(container5.hashCode())
+    println(container5.value)
+}
+
+fun show6(container6: Container6<Any>) {
+    println(container6.toString())
+    println(container6.hashCode())
+    println(container6.value)
 }
 
 interface Homu {
