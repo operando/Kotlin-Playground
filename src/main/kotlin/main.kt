@@ -522,6 +522,23 @@ test $aaa
     println("".instanceOf<String>())
     println("".instanceOf<Int>())
 
+    val iiii = 127
+    val iiii2 = iiii
+    println(iiii === iiii2)
+    println(iiii !== iiii2)
+    println(listOf("test") === listOf("test"))
+
+    // a?.equals(b) ?: (b === null)
+    val sssss: String? = null
+    val sssss2: String? = null
+    println(sssss == sssss2)
+
+    val sssss3: String? = "test"
+    println(sssss == sssss3)
+
+    val sssss4: String? = "test"
+    println(sssss4 == sssss3)
+
     println(mapOf(1 to "test", 2 to "mugemuge")
             .mapValues {
                 val (k, v) = it
