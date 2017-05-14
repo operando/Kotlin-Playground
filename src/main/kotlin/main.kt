@@ -521,6 +521,53 @@ test $aaa
 
     println("".instanceOf<String>())
     println("".instanceOf<Int>())
+
+    println(mapOf(1 to "test", 2 to "mugemuge")
+            .mapValues {
+                val (k, v) = it
+                "$k -> $v"
+            })
+
+    // 1.1から
+    println(mapOf(1 to "test", 2 to "mugemuge").mapValues { (k, v) -> "$k -> $v" })
+
+    // 1.1から
+    // Underscores for unused parameters
+    // 使用しない変数名を_で定義する
+    mapOf(1 to "test", 2 to "mugemuge")
+            .forEach { _, v -> println(v) }
+
+    // works in destructuring declarations
+    val (_, v) = returnPair()
+    println(v)
+
+
+    // Local delegated properties
+    // 以下は定義しても変数にアクセスされるまで遅延する
+    val gamugamu by lazy {
+        println("gamugamu")
+        100
+    }
+
+    if (true) {
+        println("true")
+        println("p $gamugamu")
+    } else {
+        println("no")
+    }
+
+    listOf(1, 3, 4)
+            .onEach {
+                println(it)
+            }
+            .forEach(::println)
+
+    println(User("test").height(100))
+    println(User("test").height2("100"))
+}
+
+fun returnPair(): Pair<Int, String> {
+    return 1 to "test"
 }
 
 // inline + reified

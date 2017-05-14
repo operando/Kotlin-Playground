@@ -2,7 +2,7 @@ group 'kotlin_playground'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.0.5'
+    ext.kotlin_version = '1.1.2'
 
     repositories {
         mavenCentral()
@@ -34,5 +34,6 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-compiler:$kotlin_version"
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
