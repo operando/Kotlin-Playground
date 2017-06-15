@@ -1,2 +1,7 @@
 # Kotlin Playground
 
+## Run
+
+```
+./gradlew
+```
