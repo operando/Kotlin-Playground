@@ -2,8 +2,7 @@ group 'kotlin_playground'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.2-5'
-
+    ext.kotlin_version = '1.2.10'
     repositories {
         mavenCentral()
     }
