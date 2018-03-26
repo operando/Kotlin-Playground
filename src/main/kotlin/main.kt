@@ -209,7 +209,7 @@ test $aaa
         println("run run")
     }
 
-    println(test.Event().value)
+    println(Event().value)
     // test.Event().value = 2
 
     println(Nest.Test().test())
@@ -293,8 +293,7 @@ test $aaa
         return a.toString()
     }))
 
-    println(huhu3(1) {
-        koko ->
+    println(huhu3(1) { koko ->
         koko.toString()
     })
 
@@ -561,26 +560,30 @@ test $aaa
 
     // Local delegated properties
     // 以下は定義しても変数にアクセスされるまで遅延する
-    val gamugamu by lazy {
-        println("gamugamu")
-        100
-    }
-
-    if (true) {
-        println("true")
-        println("p $gamugamu")
-    } else {
-        println("no")
-    }
+//    val gamugamu by lazy {
+//        println("gamugamu")
+//        100
+//    }
+//
+//    if (true) {
+//        println("true")
+//        println("p $gamugamu")
+//    } else {
+//        println("no")
+//    }
 
     listOf(1, 3, 4)
-            .onEach {
-                println(it)
-            }
             .forEach(::println)
 
     println(User("test").height(100))
     println(User("test").height2("100"))
+
+//    val list__ : List<Int> = (0..5).toList()
+    val list__: List<Int> = (0..6).toList()
+    // val result__: List<List<Int>> = list__.chunked(3)
+    // val result___: List<List<Int>> = list__.chunked(3) { it.average() }
+    // println(result__)
+    // println(result___)
 }
 
 fun returnPair(): Pair<Int, String> {
