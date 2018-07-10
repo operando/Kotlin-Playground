@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     }
 
     for (i in list.indices) {
-        println(list.get(i))
+        println(list[i])
     }
 
     for ((index, value) in list.withIndex()) {
